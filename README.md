@@ -207,7 +207,7 @@ Query engines read data into memory from Hive-partitioned Parquet or kdb+ format
 | --- | --- | --- |
 | `kdb` | KDB-X (q-sql) | kdb+ |
 | `kdbxsql` | KDB-X SQL | kdb+ |
-| `pykx` | KDB-X Python (`pykx`) | kdb+ |
+| `pykx` | KDB-X Python (`pykx`). Two solutions: `pykx` runs the queries through the query API (`pykx.psv`), `pykx (Pandas API)` runs them through the pandas API (`pykx_pandas.psv`) | kdb+ |
 | `duckdb` | DuckDB | Parquet |
 | `chdb` | chDB (embedded ClickHouse). Three solutions: `chDB (Memory)` loads the Parquet files with ClickHouse's `file()` function into `ENGINE = Memory` tables, `chDB (Memory, Compressed)` does the same with the two big tables LZ4-compressed in memory (`ENGINE = Memory SETTINGS compress = 1`), `chDB (PyArrow)` queries Arrow tables through chDB's `Python()` table function | Parquet |
 | `polars` | Polars. Two solutions, selected with the runner's `-mode` flag: `Polars (Eager)` (`-mode eager`) keeps the tables as `DataFrame`s and runs every query through the eager API, `Polars (Lazy)` (`-mode lazy`) hands the queries `LazyFrame`s and collects them with the streaming engine. Each mode has its own query file (`polars.psv` / `polars_lazy.psv`) | Parquet |
@@ -547,7 +547,7 @@ with the streaming engine.
 Queries are defined **per engine** in PSV files under
 [artifacts/queries/inmemory/](./artifacts/queries/inmemory/) (`kdb.psv`,
 `sql.psv`, `duckdb.psv`, `chdb.psv`, `polars.psv`, `polars_lazy.psv`,
-`pandas.psv`, `pykx.psv`, and the attribute-benchmark variants
+`pandas.psv`, `pykx.psv`, `pykx_pandas.psv`, and the attribute-benchmark variants
 `kdb_noattr.psv`, `kdb_tabledict.psv`). A single engine can have more than one
 query file when it is benchmarked in several configurations: `polars.psv` holds
 the eager-API queries and `polars_lazy.psv` the same queries written against

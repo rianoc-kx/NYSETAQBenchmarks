@@ -149,7 +149,7 @@ the Python dataframe/SQL engines read Parquet:
 | --- | --- | --- |
 | `kdb` | KDB-X (q-sql) | kdb+ |
 | `kdbxsql` | KDB-X SQL | kdb+ |
-| `pykx` | KDB-X Python (`pykx`) | kdb+ |
+| `pykx` | KDB-X Python (`pykx`) — two solutions, `pykx` (query API) and `pykx (pandas API)` | kdb+ |
 | `duckdb` | DuckDB | Parquet |
 | `chdb` | chDB (embedded ClickHouse) | Parquet |
 | `polars` | Polars — two solutions, `Polars (Eager)` and `Polars (Lazy)` | Parquet |
@@ -223,7 +223,7 @@ Optional:
 | --- | --- | --- |
 | `-t`, `--threads` | space-separated secondary-thread counts to test; each engine runs once per value (`0` = no secondary threads) | `"1 4"` |
 | `-e`, `--engines` | (queryEngines only) comma-separated subset of `kdb,kdbxsql,duckdb,chdb,polars,pykx,pandas` | all |
-| `-s`, `--solutions` | (queryEngines only) comma-separated subset of the named variants within those engines, or `"ALL"` for every variant. Polars contributes `Polars (Eager)` and `Polars (Lazy)`; picking the `polars` engine alone runs neither unless one of those names is selected | `"KDB-X,DuckDB (Index),Polars (Lazy),Pandas"` |
+| `-s`, `--solutions` | (queryEngines only) comma-separated subset of the named variants within those engines, or `"ALL"` for every variant. Polars contributes `Polars (Eager)` and `Polars (Lazy)`, pykx contributes `pykx` and `pykx (pandas API)`; picking the `polars` engine alone runs neither unless one of those names is selected | `"KDB-X,DuckDB (Index),Polars (Lazy),Pandas"` |
 | `-i`, `--idx` | run a subset of queries: `42`, `32,42,50`, or range `40-44` | all |
 | `-q`, `--query-output-dir` | persist each solution's query outputs as `queryoutput_<idx>.csv` (per-solution subdir, e.g. `Polars_Eager_`) for cross-engine correctness checks | not persisted |
 | `-r`, `--result-dir` | directory for the merged `results.psv`, plus per-solution stats (`<solution>/stats.yaml` + `os.txt`) and `environment.yaml` | `./results/inmemory` |

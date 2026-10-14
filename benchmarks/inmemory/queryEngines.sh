@@ -126,6 +126,9 @@ function execute_queries () {
             if solution_enabled "pykx"; then
                 run_solution "pykx" env QARGS="-s ${s}" uv run pysrc/queryrunner/main.py ${COMMONPARAMS} -db ${DB_DIR}/kdb -engine pykx -sortcols "time" -indexon "sym" -queryfile ./artifacts/queries/inmemory/pykx.psv
             fi
+            if solution_enabled "pykx (pandas API)"; then
+                run_solution "pykx (pandas API)" env QARGS="-s ${s}" uv run pysrc/queryrunner/main.py ${COMMONPARAMS} -db ${DB_DIR}/kdb -engine pykx -sortcols "time" -indexon "sym" -queryfile ./artifacts/queries/inmemory/pykx_pandas.psv
+            fi
         fi
         if engine_enabled pandas; then
             if solution_enabled "Pandas"; then
